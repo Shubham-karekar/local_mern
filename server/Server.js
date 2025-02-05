@@ -1,30 +1,26 @@
-require(`dotenv`).config();
-
+require('dotenv').config();
 const express = require("express");
 const app = express();
-const cors = require('cors')
+const cors = require('cors');
 const authRoute = require("./router/auth-router");
-const contactRoute = require("./router/auth-router");
+const adminRoute = require("./router/admin-router");
 
 const connectDb = require("./utils/db");
-const { Mongoose } = require("mongoose");
 const errorMiddleware = require("./middleware/error-middleware");
 
-const corsOption ={
+const corsOption = {
   origin: "http://localhost:5173",
-  methods: "GET, POST, DELETE,HEAD",
-  credential: true,
-}
-
-
-
+  methods: "GET, POST, DELETE, HEAD",
+  credentials: true,
+};
 
 app.use(cors(corsOption));
-app.use(express.json()); //Express middleware
+app.use(express.json()); // Express middleware
 
 app.use("/", authRoute);
-
-app.use("/contact", contactRoute);
+app.use("/contact", authRoute); // Assuming contact routes are handled by auth-router
+app.use("/admin/user", adminRoute); // Corrected this line
+app.use("/admin/contact", adminRoute); // Assuming adminContactRoute is handled by admin-router
 
 app.use(errorMiddleware);
 
@@ -32,6 +28,6 @@ const PORT = 5000;
 
 connectDb().then(() => {
   app.listen(PORT, () => {
-    console.log(`Server is runing at port ${PORT}`);
+    console.log(`Server is running at port ${PORT}`);
   });
 });

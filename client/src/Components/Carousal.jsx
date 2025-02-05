@@ -1,12 +1,16 @@
 import React, { useEffect, useRef } from "react";
 import img1 from "../Components/Images/slider2.jpg";
-import img2 from "../Components/Images/Slider 2.jpg";
+import img2 from "../Components/Images/Slider2.jpg";
 import { Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-
+import { useAuth } from "../Store/auth";
+import { useTheme } from "../Context/ThemeContext";
 
 export default function Carousal() {
+  const { theme } = useTheme();
   const carouselRef = useRef(null);
+  const { user } = useAuth();
+
   useEffect(() => {
     const interval = setInterval(() => {
       if (carouselRef.current) {
@@ -17,146 +21,106 @@ export default function Carousal() {
           nextButton.click();
         }
       }
-    }, 3000); // 3 seconds interval
+    }, 3000); // Auto-slide every 3 seconds
 
     return () => clearInterval(interval);
   }, []);
-  // const Carousal = ({ myData = { name: "Your Brand" } }) => {
-  //   const { name } = myData;
+
   return (
-    <>
-      <div
-        id="carouselExampleFade"
-        className="carousel slide carousel-fade"
-        ref={carouselRef}
-      >
-        <div className="carousel-inner">
-          <div className="carousel-item active">
-            <div className="container py-5 my-4">
-              <div className="row align-items-center">
-                <div className="col-md-6">
-                  <p className="text-muted display-6">Welcome to Live Sale</p>
-                  <h1 className="display-4 fw-bold mb-4">Discount upto 80%</h1>
-                  <p className="lead mb-4">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Molestias atque temporibus veniam doloribus libero ad error
-                    omnis voluptates animi! Suscipit sapiente.
-                  </p>
-                  <NavLink to="/Product">
-                    <Button
-                      variant="light"
-                      className="btn-lg btn-outline-primary"
-                    >
-                      Shop Now
-                    </Button>
-                  </NavLink>
-                </div>
-                <div className="col-md-6 text-center">
-                  <div className="position-relative">
-                    <img
-                      src={img1}
-                      alt="About Us"
-                      className="img- rounded shadow"
-                      style={{ maxWidth: "80%", borderRadius: "15px" }}
-                    />
-                    <div
-                      className="position-absolute"
-                      style={{
-                        content: '""',
-                        width: "60%",
-                        height: "70%",
-                        backgroundColor: "rgba(81, 56, 238, 0.4)",
-                        left: "70%",
-                        top: "-2rem",
-                        zIndex: "-1",
-                        transform: "translateX(-50%)",
-                        borderRadius: "15px",
-                        transition:
-                          "width 0.3s ease-in-out, height 0.3s ease-in-out",
-                      }}
-                    ></div>
-                  </div>
-                </div>
+    <div
+      id="carouselExampleFade"
+      className={`carousel slide carousel-fade ${
+        theme === "dark" ? "bg-dark text-light" : "bg-light text-dark"
+      } shadow-sm`}
+      ref={carouselRef}
+    >
+      <div className="carousel-inner">
+        {/* Slide 1 */}
+        <div className="carousel-item active">
+          <div className="container py-5 my-4">
+            <div className="row align-items-center">
+              <div className="col-md-6">
+                <p className="display-6">
+                  Welcome, {user?.username || "Guest"}!
+                </p>
+                <h1 className="display-4 fw-bold mb-4">
+                  Mega Sale - Up to 80% Off
+                </h1>
+                <p className="lead mb-4">
+                  Unbeatable discounts on your favorite products. Shop now and
+                  save big. Don't miss out!
+                </p>
+                <NavLink to="/Product">
+                  <Button variant="outline-primary" className="btn-lg">
+                    Shop Now
+                  </Button>
+                </NavLink>
+              </div>
+              <div className="col-md-6 text-center">
+                <img
+                  src={img1}
+                  alt="Mega Sale"
+                  className="img-fluid rounded shadow"
+                  style={{ borderRadius: "15px" }}
+                />
               </div>
             </div>
           </div>
-          <div className="carousel-item">
-            <div className="container py-5 my-4">
-              <div className="row align-items-center">
-                <div className="col-md-6">
-                  <p className="text-muted display-6">
-                    Sale is Live at 8 to 9pm
-                  </p>
-                  <h1 className="display-4 fw-bold mb-4">Discount upto 30%</h1>
-                  <p className="lead mb-4">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Molestias atque temporibus veniam doloribus libero ad error
-                    omnis voluptates animi! Suscipit sapiente.
-                  </p>
-                  <NavLink to="/Product">
-                    <Button
-                      variant="light"
-                      className="btn-lg btn-outline-primary"
-                    >
-                      Shop Now
-                    </Button>
-                  </NavLink>
-                </div>
-                <div className="col-md-6 text-center">
-                  <div className="position-relative">
-                    <img
-                      src={img2}
-                      alt="About Us"
-                      className="img- rounded shadow"
-                      style={{ maxWidth: "80%", borderRadius: "15px" }}
-                    />
-                    <div
-                      className="position-absolute"
-                      style={{
-                        content: '""',
-                        width: "60%",
-                        height: "70%",
-                        backgroundColor: "rgba(81, 56, 238, 0.4)",
-                        left: "70%",
-                        top: "-2rem",
-                        zIndex: "-1",
-                        transform: "translateX(-50%)",
-                        borderRadius: "15px",
-                        transition:
-                          "width 0.3s ease-in-out, height 0.3s ease-in-out",
-                      }}
-                    ></div>
-                  </div>
-                  <button
-                    className="carousel-control-prev"
-                    type="button"
-                    data-bs-target="#carouselExampleFade"
-                    data-bs-slide="prev"
-                  >
-                    <span
-                      className="carousel-control-prev-icon"
-                      aria-hidden="true"
-                    />
-                    <span className="visually-hidden">Previous</span>
-                  </button>
-                  <button
-                    className="carousel-control-next "
-                    type="button"
-                    data-bs-target="#carouselExampleFade"
-                    data-bs-slide="next"
-                  >
-                    <span
-                      className="carousel-control-next-icon"
-                      aria-hidden="true"
-                    />
-                    <span className="visually-hidden">Next</span>
-                  </button>
-                </div>
+        </div>
+
+        {/* Slide 2 */}
+        <div className="carousel-item">
+          <div className="container py-5 my-4">
+            <div className="row align-items-center">
+              <div className="col-md-6">
+                <p className="display-6">
+                  Exclusive Hour: 8 PM to 9 PM
+                </p>
+                <h1 className="display-4 fw-bold mb-4">
+                  Flash Sale - Up to 30% Off
+                </h1>
+                <p className="lead mb-4">
+                  Experience incredible savings during our limited-time flash
+                  sale. Shop smarter, save more!
+                </p>
+                <NavLink to="/Product">
+                  <Button variant="outline-primary" className="btn-lg">
+                    Shop Now
+                  </Button>
+                </NavLink>
+              </div>
+              <div className="col-md-6 text-center">
+                <img
+                  src={img2}
+                  alt="Flash Sale"
+                  className="img-fluid rounded shadow"
+                  style={{ borderRadius: "15px" }}
+                />
               </div>
             </div>
           </div>
         </div>
       </div>
-    </>
+
+      {/* Carousel Controls */}
+      <button
+        className="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleFade"
+        data-bs-slide="prev"
+      >
+        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span className="visually-hidden">Previous</span>
+      </button>
+      <button
+        className="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleFade"
+        data-bs-slide="next"
+      >
+        <span className="carousel-control-next-icon" aria-hidden="true"></span>
+        <span className="visually-hidden">Next</span>
+      </button>
+    </div>
   );
 }

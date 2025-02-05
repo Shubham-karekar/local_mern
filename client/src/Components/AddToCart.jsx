@@ -1,71 +1,69 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useState } from "react";
 import { FaCheck } from "react-icons/fa";
-import CartAmountToggle from "../Components/CartAmountToggle";
+import { Button, ButtonGroup } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { toast } from "react-toastify";
+
+import CartAmountToggle from "../Components/CartAmountToggle";
 import { useCartContext } from "../Context/CartContext";
 
 const AddToCart = ({ product }) => {
   const { addToCart } = useCartContext();
-  //const {Buy } = useCartContext();
+  const { id, colors = [], stock } = product;
 
-  const { id, colors, stock } = product;
-
-  const [color, setColor] = useState(colors[0]);
+  const [color, setColor] = useState(colors.length > 0 ? colors[0] : "");
   const [amount, setAmount] = useState(1);
 
-  const setDecrease = () => {
-    amount > 1 ? setAmount(amount - 1) : setAmount(1);
-  };
+  const setDecrease = () => setAmount((prev) => Math.max(1, prev - 1));
+  const setIncrease = () => setAmount((prev) => Math.min(stock, prev + 1));
 
-  const setIncrease = () => {
-    amount < stock ? setAmount(amount + 1) : setAmount(stock);
+  const handleOnSubmit = () => {
+    toast.error("The work is in process");
   };
 
   return (
-    <>
-      <div className="mb-3">
-        <p>
-          Color:
-          {colors.map((curColor, index) => {
-            return (
+    <div className="mt-3">
+      {/* color selection */}
+      {colors.length > 0 && (
+        <div className="mb-3">
+          <p className="mb-2 fw-bold">color:</p>
+          <ButtonGroup>
+            {colors.map((curColor, index) => (
               <Button
                 key={index}
                 variant={color === curColor ? "primary" : "outline-primary"}
-                style={{ backgroundColor: curColor }}
-                className="mx-1"
+                className="rounded-circle p-2"
+                style={{
+                  backgroundColor: curColor,
+                  border: `2px solid ${color === curColor ? "black" : "gray"}`,
+                  width: "30px",
+                  height: "30px",
+                }}
                 onClick={() => setColor(curColor)}
               >
-                {color === curColor ? <FaCheck className="text-white" /> : null}
+                {color === curColor && <FaCheck className="text-white" />}
               </Button>
-            );
-          })}
-        </p>
+            ))}
+          </ButtonGroup>
+        </div>
+      )}
+
+      {/* quantity toggle */}
+      <CartAmountToggle amount={amount} setDecrease={setDecrease} setIncrease={setIncrease} />
+
+      {/* buttons */}
+      <div className="mt-4 d-flex gap-3">
+        <NavLink to="/cart">
+          <Button variant="primary" onClick={() => addToCart(id, color, amount, product)}>
+            add to cart
+          </Button>
+        </NavLink>
+        <Button variant="success" onClick={handleOnSubmit}>
+          buy now
+        </Button>
       </div>
-
-      {/* Add to Cart */}
-
-      <CartAmountToggle
-        amount={amount}
-        setDecrease={setDecrease}
-        setIncrease={setIncrease}
-      />
-      <br></br>
-      <NavLink to="/cart" onClick={() => addToCart(id, color, amount, product)}>
-        <Button variant="primary" className="mt-3">
-          Add To Cart
-        </Button>
-      </NavLink>
-      <NavLink 
-      //to="/cart" 
-      //onClick={() => (id, color, amount, product)}
-      >
-        <Button variant="primary" className="mt-3 mx-4">
-          Buy Now
-        </Button>
-      </NavLink>
-    </>
+    </div>
   );
 };
 

@@ -3,16 +3,16 @@ import { Form, Button, Container, Row, Col, InputGroup, FormControl } from "reac
 import { useFilterContext } from "../Context/FilterContext";
 import { FaCheck } from "react-icons/fa";
 import FormatPrice from "../Helpers/FormatPrice";
+import { useTheme } from "../Context/ThemeContext";
 
 const FilterSection = () => {
   const {
-    filters: { category, color, company, price,minPrice,maxPrice },
+    filters: { category, color, company, price, minPrice, maxPrice, text = "" },
     updateFilterValue,
     clearFilters,
     all_products,
   } = useFilterContext();
-
-
+  const {theme} = useTheme();
   // Function to get unique values from product data
   const getUniqueData = (data, attr) => {
     let newVal = data.map((curElem) => curElem[attr] || ""); // Fallback to empty string if undefined
@@ -30,7 +30,7 @@ const FilterSection = () => {
   const colorsData = getUniqueData(all_products, "colors");
 
   return (
-    <Container className="py-5">
+    <Container className={`py-5 ${theme === 'dark' ? 'bg-dark text-white' : 'bg-light text-dark'}`}>
       {/* Search Box */}
       <Row className="mb-4">
         <Col>
@@ -40,6 +40,7 @@ const FilterSection = () => {
                 type="text"
                 name="text"
                 placeholder="Search"
+                value={text} // Ensure the input has a value
                 onChange={updateFilterValue}
               />
             </InputGroup>
@@ -58,7 +59,7 @@ const FilterSection = () => {
                 variant="light"
                 name="category"
                 value={curElem}
-                className={`btn ${curElem === category ? "text-capitalize active" : ""}`}
+                className={`btn ${curElem === category ? "text-capitalize active" : ""}  ${theme === 'dark' ? 'bg-dark text-white' : 'bg-light text-dark'}`}
                 onClick={updateFilterValue}
               >
                 {curElem}
@@ -72,7 +73,8 @@ const FilterSection = () => {
       <Row className="mb-2">
         <Col className="text-left">
           <h3>Company</h3>
-          <Form.Group controlId="company">
+          <Form.Group controlId="company" className={`${theme === 'dark' ? 'bg-dark text-white' : 'bg-light text-dark'}`}
+                onClick={updateFilterValue}>
             <Form.Control
               as="select"
               name="company"
