@@ -5,13 +5,11 @@ import { useAuth } from "../Store/auth";
 import { useCartContext } from "../Context/CartContext";
 import LoadingBar from "react-top-loading-bar";
 import { useTheme } from "../Context/ThemeContext";
-import { FaSun, FaMoon } from "react-icons/fa"; // import icons
 
 export default function Navbar() {
   const { isLoggedIn } = useAuth();
   const { total_item } = useCartContext();
   const [progress, setProgress] = useState(0);
-  const location = useLocation();
   const { theme, toggleTheme } = useTheme();
 
   const handleNavigation = () => {

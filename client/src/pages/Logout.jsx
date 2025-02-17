@@ -9,7 +9,7 @@ export const Logout = () => {
   useEffect(() => {
     if (logoutUser) {
       logoutUser(); // Call the logout function
-      toast.success("1 Logout Successful"); // Show success message
+      // toast.success("1 Logout Successful"); // Show success message
     }
   }, [logoutUser]);
 

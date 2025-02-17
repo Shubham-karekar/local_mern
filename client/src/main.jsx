@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import ClipLoader from "react-spinners/ClipLoader";
+
 import App from './App.jsx'
 import { AuthProvider } from './Store/auth.jsx'
 import { FilterContextProvider } from './Context/FilterContext.jsx'

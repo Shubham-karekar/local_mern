@@ -36,28 +36,56 @@ export const Contact = () => {
     });
   };
 
+  // const submitData = async (event) => {
+  //   event.preventDefault();
+  //   console.log(user);
+
+  //   try {
+  //     const response = await fetch("http://localhost:5000/contact","http://localhost:5000/sendemail", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(data),
+  //     });
+  //     if (response.ok) {
+  //       setData(defaultContactFormData);
+  //       const responseData = await response.json();
+  //       console.log(responseData);
+  //       toast.success("Message sent successfully");
+  //     }
+  //     console.log(response);
+  //   } catch (error) {
+  //     toast.error("Message not sent successfully");
+  //     console.log("Error in submitting data:", error);
+  //   }
+  // };
+
   const submitData = async (event) => {
     event.preventDefault();
-    console.log(user);
+    console.log("Submitting Data:", data);
 
     try {
-      const response = await fetch("http://localhost:5000/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      if (response.ok) {
+      // Send data to BOTH `/contact` (database) and `/sendemail` (email)
+      const [contactResponse, emailResponse] = await Promise.all([
+        fetch("http://localhost:5000/contact", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }),
+      ]);
+
+      if (contactResponse.ok) {
         setData(defaultContactFormData);
-        const responseData = await response.json();
-        console.log(responseData);
-        toast.success("Message sent successfully");
+        toast.success("Message sent successfully!");
+      } else {
+        toast.error("Message not sent successfully. Please try again.");
       }
-      console.log(response);
     } catch (error) {
-      toast.error("Message not sent successfully");
-      console.log("Error in submitting data:", error);
+      console.error("Error submitting data:", error);
+      toast.error("An error occurred while sending the message.");
     }
   };
 
@@ -146,3 +174,4 @@ export const Contact = () => {
     </>
   );
 };
+

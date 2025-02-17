@@ -6,6 +6,7 @@ import img from "../images/laptop.jpg";
 import img2 from "../images/great.jpg";
 import img3 from "../images/wide_range.jpg";
 import img4 from "../images/fast_shipping.jpg";
+import Comments from "../Components/Comments";
 import "../App.css"; // import custom styles
 
 export const About = () => {
@@ -50,9 +51,11 @@ export const About = () => {
           <p className="fw-bold">- Yuri Clark</p>
         </div>
       </div>
+      <Comments />
 
       {/* footer */}
       <Footer />
     </div>
   );
 };
+

@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; 
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Home } from "./pages/Home";
 import { Contact } from "./pages/Contact";
@@ -8,12 +8,17 @@ import { Login } from "./pages/Login";
 import Nav from "./Components/Nav";
 import Products from "./pages/Product";
 import { Logout } from "./pages/Logout";
+import { AdminLayout } from "./Components/layouts/admin-layout";
+import { AdminUser } from "./pages/Admin-User"
+import { AdminContact } from "./pages/Admin-Contact"
 import SingleProduct from "./pages/SingleProduct";
 import GridView from "./Components/GridView";
 import ListView from "./Components/ListView";
 import Cart from "./pages/Cart";
 import PrivateRoute from "./Store/PrivateRoute";
+import { UserLayouts } from "./Components/Layouts/User-Layout";
 import "bootstrap/dist/css/bootstrap.min.css";  // Import Bootstrap CSS
+
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -54,6 +59,12 @@ const App = () => {
         <Route path="/singleproduct/:id" element={<SingleProduct />} />
         <Route path="/gridview" element={<GridView />} />
         <Route path="/listView" element={<ListView />} />
+        <Route path="/admin" element={<AdminLayout />} >
+          <Route path="user" element={<AdminUser />} />
+          <Route path="user/:id/update" element={<UserLayouts />} />
+          <Route path="contact" element={<AdminContact />} />
+
+        </Route>
         <Route
           path="/cart"
           element={

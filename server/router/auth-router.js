@@ -1,13 +1,17 @@
+
+
 const express = require("express");
 const router = express.Router();
-const authcontroller = require("../controller/auth-controller");
-const middleWare = require("../middleware/auth-middleware")
-const contactForm = require("../controller/contact-controller");
+const authController = require("../controller/auth-controller");
+const authMiddleware = require("../middleware/auth-middleware");
+const { contactPage,} = require("../controller/contact-controller");
 
-router.route("/contact").post(contactForm);
-router.route("/").get(authcontroller.home);
-router.route("/register").post(authcontroller.register);
-router.route("/login").post(authcontroller.login);
-router.route("/user").get(middleWare , authcontroller.user);
+// Define routes
+router.get("/", authController.home);
+router.post("/register", authController.register);
+router.post("/login", authController.login);
+router.post("/contact", contactPage);
+// router.get("/sendemail", sendEmail); // ✅ Correctly mapped route
+router.get("/user", authMiddleware, authController.user);
 
 module.exports = router;

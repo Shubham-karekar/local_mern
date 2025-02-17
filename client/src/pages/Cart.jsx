@@ -6,6 +6,7 @@ import { Container, Row, Col, Button, Table, Alert } from "react-bootstrap";
 import FormatPrice from "../Helpers/FormatPrice";
 import { useTheme } from "../Context/ThemeContext";
 
+
 const Cart = () => {
   const { cart, clearCart, total_price, shipping_fee } = useCartContext();
   const { theme } = useTheme();
@@ -86,6 +87,7 @@ const Cart = () => {
           </Row>
         </div>
       </Container>
+      
     </div>
   );
 };
