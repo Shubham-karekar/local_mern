@@ -5,11 +5,18 @@ import { Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../Store/auth";
 import { useTheme } from "../Context/ThemeContext";
+import { toast } from "react-toastify";
+
 
 export default function Carousal() {
   const { theme } = useTheme();
   const carouselRef = useRef(null);
   const { user } = useAuth();
+  const { isLoggedIn } = useAuth();
+
+  const handleOnSubmit = () => {
+    toast.error("Please Login first")
+  }
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -29,9 +36,8 @@ export default function Carousal() {
   return (
     <div
       id="carouselExampleFade"
-      className={`carousel slide carousel-fade ${
-        theme === "dark" ? "bg-dark text-light" : "bg-light text-dark"
-      } shadow-sm`}
+      className={`carousel slide carousel-fade ${theme === "dark" ? "bg-dark text-light" : "bg-light text-dark"
+        } shadow-sm`}
       ref={carouselRef}
     >
       <div className="carousel-inner">
@@ -50,11 +56,18 @@ export default function Carousal() {
                   Unbeatable discounts on your favorite products. Shop now and
                   save big. Don't miss out!
                 </p>
-                <NavLink to="/Product">
-                  <Button variant="outline-primary" className="btn-lg">
+                {isLoggedIn ? (
+                  <NavLink to="/Product">
+                    <Button variant="outline-primary" className="btn-lg">
+                      Shop Now
+                    </Button>
+                  </NavLink>
+                ) : (
+                  <Button variant="outline-primary" className="btn-lg" onClick={handleOnSubmit}>
                     Shop Now
                   </Button>
-                </NavLink>
+                )}
+
               </div>
               <div className="col-md-6 text-center">
                 <img
@@ -83,11 +96,18 @@ export default function Carousal() {
                   Experience incredible savings during our limited-time flash
                   sale. Shop smarter, save more!
                 </p>
-                <NavLink to="/Product">
-                  <Button variant="outline-primary" className="btn-lg">
+                {isLoggedIn ? (
+                  <NavLink to="/Product">
+                    <Button variant="outline-primary" className="btn-lg">
+                      Shop Now
+                    </Button>
+                  </NavLink>
+                ) : (
+                  <Button variant="outline-primary" className="btn-lg" onClick={handleOnSubmit}>
                     Shop Now
                   </Button>
-                </NavLink>
+                )}
+
               </div>
               <div className="col-md-6 text-center">
                 <img
