@@ -1,6 +1,6 @@
 const { z } = require(Zod);
 
-// Creating object structure for validation perpose
+
 
 signupStructure = z.object({
   username: z
