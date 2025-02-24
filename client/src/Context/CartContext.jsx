@@ -98,6 +98,8 @@ const initialState = {
   total_price: 0,
   shipping_fee: 50,
 };
+ 
+
 
 const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -136,6 +138,7 @@ const CartProvider = ({ children }) => {
         clearCart,
         setDecrease,
         setIncrement,
+        
       }}
     >
       {children}

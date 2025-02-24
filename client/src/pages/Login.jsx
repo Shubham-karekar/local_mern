@@ -6,6 +6,7 @@ import { useAuth } from "../Store/auth";
 import { toast } from "react-toastify";
 import { useTheme } from "../Context/ThemeContext";
 
+
 export const Login = () => {
     const [user, setUser] = useState({
         email: "",
@@ -13,8 +14,9 @@ export const Login = () => {
     });
     const [errors, setErrors] = useState({});
     const { theme } = useTheme();
-    const Navigate = useNavigate();
-    const { storeTokenInLS } = useAuth();
+    const navigate = useNavigate();
+    const { storeTokenInLS, URL } = useAuth();
+    
 
     const validateInputs = () => {
         const validationErrors = {};
@@ -51,7 +53,7 @@ export const Login = () => {
         }
 
         try {
-            const response = await fetch("http://localhost:5000/login", {
+            const response = await fetch(`https://ecom-mern-backend-131m.onrender.com/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -65,9 +67,10 @@ export const Login = () => {
                 storeTokenInLS(res_data.token);
                 localStorage.setItem("token", res_data.token);
                 setUser({ email: "", password: "" });
-                Navigate("/");
+                navigate("/");
             } else {
                 toast.error("Invalid credentials");
+                // toast.error(res_data.msg || "Invalid credentials"); 
             }
         } catch (error) {
             console.error("Login error:", error);
@@ -140,7 +143,7 @@ export const Login = () => {
                                                 Remember me
                                             </label>
                                         </div>
-                                        <a href="#!" className={` ${theme === "dark" ? "bg-dark text-white" : "bg-light text-dark"}`}>
+                                        <a href="#!" className={`${theme === "dark" ? "text-white" : "text-dark"}`}>
                                             Forgot password?
                                         </a>
                                     </div>

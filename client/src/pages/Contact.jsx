@@ -4,6 +4,7 @@ import { useAuth } from "../Store/auth";
 import { toast } from "react-toastify";
 import { useTheme } from "../Context/ThemeContext"; // Import the theme context
 
+
 const defaultContactFormData = {
   username: "",
   email: "",
@@ -13,9 +14,9 @@ const defaultContactFormData = {
 export const Contact = () => {
   const [data, setData] = useState(defaultContactFormData);
   const [userData, setUserData] = useState(true);
-  const { theme, toggleTheme } = useTheme(); // Use the theme context
+  const { theme} = useTheme(); // Use the theme context
   
-  const { user } = useAuth();
+  const { user, URL } = useAuth();
 
   useEffect(() => {
     if (userData && user) {
@@ -66,9 +67,9 @@ export const Contact = () => {
     console.log("Submitting Data:", data);
 
     try {
-      // Send data to BOTH `/contact` (database) and `/sendemail` (email)
+     
       const [contactResponse, emailResponse] = await Promise.all([
-        fetch("http://localhost:5000/contact", {
+        fetch(`https://ecom-mern-backend-131m.onrender.com/contact`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -174,4 +175,5 @@ export const Contact = () => {
     </>
   );
 };
+
 

@@ -8,6 +8,7 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState(null);
   const authorizationToken = `Bearer ${token}`
+  const URI = import.meta.env.VITE_BACKEND_URL;
 
   // Function to store token in localStorage and update state
   const storeTokenInLS = (serverToken) => {
@@ -27,7 +28,7 @@ export const AuthProvider = ({ children }) => {
     if (!token) return;
 
     try {
-      const response = await fetch("http://localhost:5000/user", {
+      const response = await fetch(`${URI}/user`, {
         method: "GET",
         headers: {
           Authorization: authorizationToken,
@@ -54,7 +55,7 @@ export const AuthProvider = ({ children }) => {
   // Provide context values
   return (
     <AuthContext.Provider
-      value={{ token, isLoggedIn: !!token, storeTokenInLS, logoutUser, user, authorizationToken }}
+      value={{ token, isLoggedIn: !!token, storeTokenInLS, logoutUser, user, authorizationToken, URI }}
     >
       {children}
     </AuthContext.Provider>

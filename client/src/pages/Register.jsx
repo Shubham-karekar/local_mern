@@ -4,6 +4,8 @@ import { useAuth } from '../Store/auth';
 import { toast } from 'react-toastify';
 import { useTheme } from '../Context/ThemeContext';
 
+
+
 export const Register = () => {
   const [user, setUser] = useState({
     username: '',
@@ -14,7 +16,8 @@ export const Register = () => {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
   const { theme } = useTheme(); // Using theme from context
-  const { storeTokenInLS } = useAuth();
+  const { storeTokenInLS , URL} = useAuth();
+  
 
   const validateInputs = () => {
     const validationErrors = {};
@@ -62,7 +65,7 @@ export const Register = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/register', {
+      const response = await fetch('https://ecom-mern-backend-131m.onrender.com/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
