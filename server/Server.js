@@ -9,7 +9,7 @@ const connectDb = require("./utils/db");
 const errorMiddleware = require("./middleware/error-middleware");
 
 const corsOption = {
-  origin: "http://ecom-mern-backend-131m.onrender.com",
+  origin: "https://electronics-ecom.netlify.app",
   methods: "GET, POST, DELETE, HEAD, PUT, PATCH",
   credentials: true,
 };

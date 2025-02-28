@@ -63,18 +63,6 @@ const getUserByID = async (req, res, next) => {
   }
 };
 
-
-// const updateContactByID = async (req, res) => {
-//   try {
-//     const id = req.params.id;
-//     const updatUserData = req.body;
-//     const updatedData = await Contact.updateOne(
-//       { _id: id },
-//       { $set: updatUserData }
-//     );
-//     return res.status(200).json(updatedData)
-//   } catch (error) {}
-// };
 const updateUserByID = async (req, res, next) => {
   try {
     const id = req.params.id;
@@ -82,7 +70,7 @@ const updateUserByID = async (req, res, next) => {
 
     const updatedData = await User.findByIdAndUpdate(
       { _id: id },
-      { $set: updateUserData } // Returns updated document & ensures validation
+      { $set: updateUserData } 
     );
 
     if (!updatedData) {
@@ -91,7 +79,7 @@ const updateUserByID = async (req, res, next) => {
 
     return res.status(200).json({ message: "User updated successfully", updatedData });
   } catch (error) {
-    next(error); // Proper error handling
+    next(error); 
   }
 };
 
@@ -108,13 +96,12 @@ const deleteContactById = async (req, res) => {
 };
 
 const getAllUsersContact = async (req, res, next) => {
-  // Fixed function name
+  
   try {
     const contacts = await Contact.find();
     console.log(contacts);
     if (!contacts || contacts.length === 0) {
-      // Fixed "contacts === 0" to "contacts.length === 0"
-      return res.status(404).json({ message: "Data not found" }); // Fixed "Data is Not found" to "Data not found"
+      return res.status(404).json({ message: "Data not found" }); 
     }
     res.status(200).json(contacts);
   } catch (error) {
@@ -131,7 +118,6 @@ module.exports = {
   getAllUsersContact,
   deleteContactById,
   updateUserByID,
-}; // Fixed export statement
+}; 
 
 
-// Shh
