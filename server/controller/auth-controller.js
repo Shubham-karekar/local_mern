@@ -48,7 +48,6 @@ const register = async (req, res) => {
 // User Login
 
 const login = async (req, res, next) => {
-  res.status(200).send("Hello, this is the home route");
   try {
     const { email, password } = req.body;
 

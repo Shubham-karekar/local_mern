@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
     if (!token) return;
 
     try {
-      const response = await fetch(`${URI}/user`, {
+      const response = await fetch(`https://ecom-mern-backend-1y7p.onrender.com/user`, {
         method: "GET",
         headers: {
           Authorization: authorizationToken,

@@ -69,7 +69,7 @@ export const Contact = () => {
     try {
      
       const [contactResponse, emailResponse] = await Promise.all([
-        fetch(`https://ecom-mern-backend-131m.onrender.com/contact`, {
+        fetch(`https://ecom-mern-backend-1y7p.onrender.com/contact`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

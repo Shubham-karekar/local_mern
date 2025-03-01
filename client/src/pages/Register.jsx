@@ -65,7 +65,7 @@ export const Register = () => {
     }
 
     try {
-      const response = await fetch('https://ecom-mern-backend-131m.onrender.com/register', {
+      const response = await fetch('https://ecom-mern-backend-1y7p.onrender.com/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

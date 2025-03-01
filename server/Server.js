@@ -11,7 +11,6 @@ const errorMiddleware = require("./middleware/error-middleware");
 const corsOptions = {
   origin: "https://electronics-ecom.netlify.app",
   methods: "GET, POST, DELETE, HEAD, PUT, PATCH",
-  credentials: true,
 };
 app.use(cors(corsOptions));
 

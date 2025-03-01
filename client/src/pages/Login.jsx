@@ -53,7 +53,7 @@ export const Login = () => {
         }
 
         try {
-            const response = await fetch(`https://ecom-mern-backend-131m.onrender.com/login`, {
+            const response = await fetch("https://ecom-mern-backend-1y7p.onrender.com/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
