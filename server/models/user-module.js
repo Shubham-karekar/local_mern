@@ -23,6 +23,15 @@ const userStructure = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  address: {
+    fullName: String,
+    phone: String,
+    street: String,
+    city: String,
+    state: String,
+    zip: String,
+    country: String,
+  },
 });
 
 userStructure.pre('save', async function (next) {

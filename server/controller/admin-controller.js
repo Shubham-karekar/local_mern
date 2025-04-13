@@ -29,17 +29,7 @@ const deleteUserById = async (req, res, next) => {
   }
 };
 
-// const getUserByID = async (req, res, next) => {
-//   try {
-//     const id = req.params.id;
-//     const data = User.deleteOne({ _id: id }, { password: 0 });
-//     res.status(200).json(data);
-//   } catch (error) {
-//     // res.status(400).json({ msg: "Contact not found in Database" });
-//     next(error);
-    
-//   }
-// };
+
 
 const getUserByID = async (req, res, next) => {
   try {

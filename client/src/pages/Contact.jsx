@@ -36,32 +36,6 @@ export const Contact = () => {
       [name]: value,
     });
   };
-
-  // const submitData = async (event) => {
-  //   event.preventDefault();
-  //   console.log(user);
-
-  //   try {
-  //     const response = await fetch("http://localhost:5000/contact","http://localhost:5000/sendemail", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(data),
-  //     });
-  //     if (response.ok) {
-  //       setData(defaultContactFormData);
-  //       const responseData = await response.json();
-  //       console.log(responseData);
-  //       toast.success("Message sent successfully");
-  //     }
-  //     console.log(response);
-  //   } catch (error) {
-  //     toast.error("Message not sent successfully");
-  //     console.log("Error in submitting data:", error);
-  //   }
-  // };
-
   const submitData = async (event) => {
     event.preventDefault();
     console.log("Submitting Data:", data);
@@ -69,7 +43,7 @@ export const Contact = () => {
     try {
      
       const [contactResponse, emailResponse] = await Promise.all([
-        fetch(`https://ecom-mern-backend-1y7p.onrender.com/contact`, {
+        fetch(`http://localhost:5000/contact`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -105,7 +79,7 @@ export const Contact = () => {
             <div className="justify-content-center">
               <iframe
                 className="embed-responsive-item"
-                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d60554.18905221528!2d73.854388!3d18.454792!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2eac6040cb269%3A0xac653591baaaa13e!2sSarhad%20College%20of%20Arts%2CCommerce%20and%20Science!5e0!3m2!1sen!2sin!4v1707550403154!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d236.52129981637611!2d73.82695081229251!3d18.468216102914177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc295ea6dda1627%3A0xab7b56deb204c1ca!2sSHREE%20LAXMI%20KIRANA%20AND%20GENERAL%20STORE!5e0!3m2!1sen!2sin!4v1743089099029!5m2!1sen!2sin"
                 width={1260}
                 height={600}
                 style={{ border: 0 }}

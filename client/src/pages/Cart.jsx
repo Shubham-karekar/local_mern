@@ -77,9 +77,9 @@ const Cart = () => {
 
               {/* Payment Button */}
               <div className="d-flex justify-content-end mt-3">
-                <NavLink to="/checkout">
+                <NavLink to="/addressPage">
                   <Button variant="outline-success" className="px-4">
-                    💳 Make Payment
+                    Procesed
                   </Button>
                 </NavLink>
               </div>
@@ -93,3 +93,4 @@ const Cart = () => {
 };
 
 export default Cart;
+

@@ -53,7 +53,7 @@ export const Login = () => {
         }
 
         try {
-            const response = await fetch("https://ecom-mern-backend-1y7p.onrender.com/login", {
+            const response = await fetch("http://localhost:5000/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -70,7 +70,6 @@ export const Login = () => {
                 navigate("/");
             } else {
                 toast.error("Invalid credentials");
-                // toast.error(res_data.msg || "Invalid credentials"); 
             }
         } catch (error) {
             console.error("Login error:", error);
@@ -143,9 +142,8 @@ export const Login = () => {
                                                 Remember me
                                             </label>
                                         </div>
-                                        <a href="#!" className={`${theme === "dark" ? "text-white" : "text-dark"}`}>
-                                            Forgot password?
-                                        </a>
+                                        <button type="button" onClick={() => navigate("/forgot-password")}>Forgot Password?</button>
+
                                     </div>
 
                                     <div className="text-center text-lg-start mt-4 pt-2">

@@ -10,6 +10,7 @@ router.route("/users/delete/:id").delete(authMiddleware, adminMiddleware, adminC
 router.route("/user/:id").get(authMiddleware, adminMiddleware, adminController.getUserByID)
 router.route("/user/update/:id").patch(authMiddleware, adminMiddleware, adminController.updateUserByID)
 
+
 router.route("/contact").get(authMiddleware, adminMiddleware, adminController.getAllUsersContact);
 router.route("/contact/delete/:id").delete(authMiddleware, adminMiddleware, adminController.deleteContactById )
 

@@ -12,7 +12,7 @@ const FilterSection = () => {
     clearFilters,
     all_products,
   } = useFilterContext();
-  const {theme} = useTheme();
+  const { theme } = useTheme();
   // Function to get unique values from product data
   const getUniqueData = (data, attr) => {
     let newVal = data.map((curElem) => curElem[attr] || ""); // Fallback to empty string if undefined
@@ -74,7 +74,7 @@ const FilterSection = () => {
         <Col className="text-left">
           <h3>Company</h3>
           <Form.Group controlId="company" className={`${theme === 'dark' ? 'bg-dark text-white' : 'bg-light text-dark'}`}
-                onClick={updateFilterValue}>
+            onClick={updateFilterValue}>
             <Form.Control
               as="select"
               name="company"

@@ -12,8 +12,8 @@ const Product = () => {
   const { isLoggedIn } = useAuth();
   const { theme } = useTheme();
 
-  if (isLoading) return <p className="text-center my-5">Loading products...</p>;
-  if (isError || products.length === 0) return <p className="text-center text-danger my-5">Error loading products.</p>;
+  if (isLoading) return <p className={`text-center my-5 ${theme === "dark" ? "bg-light" : "bg-dark"}`} style={{ width: "60px", height: "3px", border: "none" }}>Loading products...</p>;
+  if (isError || products.length === 0) return <p className={`text-center text-danger my-5 ${theme === "dark" ? "bg-dark text-white" : "bg-light text-dark"}`}>Error loading products.</p>;
 
   const displayProducts = products.slice(0, 3);
 
@@ -34,7 +34,7 @@ const Product = () => {
         <div className="row justify-content-center g-4">
           {displayProducts.map(({ id, name, image, price, category }) => (
             <div key={id} className="col-md-4">
-              <div className={`card h-100 border-0 shadow-lg rounded-4 overflow-hidden transition-all ${theme === "dark" ? "bg-secondary text-light" : "bg-white text-dark"}`} 
+              <div className={`card h-100 border-0 shadow-lg rounded-4 overflow-hidden transition-all ${theme === "dark" ? "bg-secondary text-light" : "bg-white text-dark"}`}
                 style={{ transition: "transform 0.3s ease-in-out" }}
                 onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
                 onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
