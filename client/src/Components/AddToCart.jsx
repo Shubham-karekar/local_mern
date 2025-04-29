@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { FaCheck } from "react-icons/fa";
 import { Button, ButtonGroup } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import { toast } from "react-toastify";
+
 
 import CartAmountToggle from "../Components/CartAmountToggle";
 import { useCartContext } from "../Context/CartContext";
@@ -18,10 +18,7 @@ const AddToCart = ({ product }) => {
   const setDecrease = () => setAmount((prev) => Math.max(1, prev - 1));
   const setIncrease = () => setAmount((prev) => Math.min(stock, prev + 1));
 
-  const handleOnSubmit = () => {
-    toast.error("The work is in process");
-  };
-
+  
   return (
     <div className="mt-3">
       {/* color selection */}
@@ -59,9 +56,12 @@ const AddToCart = ({ product }) => {
             add to cart
           </Button>
         </NavLink>
-        <Button variant="success" onClick={handleOnSubmit}>
+        <NavLink to="/addressPage">
+
+        <Button variant="success" >
           buy now
         </Button>
+        </NavLink>
       </div>
     </div>
   );
