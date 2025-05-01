@@ -9,11 +9,15 @@ const connectDb = require("./utils/db");
 const errorMiddleware = require("./middleware/error-middleware");
 
 const corsOptions = {
-  origin: "http://localhost:5173",
-  origin: "https://electronics-ecom.netlify.app/",
-  origin: "https://local-mern.onrender.com",
-  methods: "GET, POST, DELETE, HEAD, PUT, PATCH",
+  origin: [
+    "http://localhost:5173",
+    "https://electronics-ecom.netlify.app",
+    
+  ],
+  methods: "GET,POST,DELETE,HEAD,PUT,PATCH",
+  credentials: true,
 };
+
 app.use(cors(corsOptions));
 
 app.use(express.json()); // Express middleware for app
