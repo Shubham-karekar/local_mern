@@ -10,6 +10,7 @@ const errorMiddleware = require("./middleware/error-middleware");
 
 const corsOptions = {
   origin: "http://localhost:5173",
+  origin: "https://electronics-ecom.netlify.app/",
   methods: "GET, POST, DELETE, HEAD, PUT, PATCH",
 };
 app.use(cors(corsOptions));

@@ -43,7 +43,7 @@ export const Contact = () => {
     try {
      
       const [contactResponse, emailResponse] = await Promise.all([
-        fetch(`http://localhost:5000/contact`, {
+        fetch(`https://local-mern.onrender.com/contact`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
