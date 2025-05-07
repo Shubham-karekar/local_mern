@@ -10,7 +10,7 @@ const errorMiddleware = require("./middleware/error-middleware");
 
 const corsOptions = {
   origin: [
-    "http://localhost:5173",
+    // "http://localhost:5173",
     "https://electronics-ecom.netlify.app",
     
   ],
