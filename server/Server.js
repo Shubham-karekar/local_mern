@@ -4,21 +4,21 @@ const app = express();
 const cors = require('cors');
 const authRoute = require("./router/auth-router");
 const adminRoute = require("./router/admin-router");
-
 const connectDb = require("./utils/db");
 const errorMiddleware = require("./middleware/error-middleware");
 
+
 const corsOptions = {
-  origin: [
-    // "http://localhost:5173",
-    "https://electronics-ecom.netlify.app",
-    
+  origin: [ 
+    "https://electronics-ecom.netlify.app", // Deployed frontend
+    "http://localhost:5173", // Local development
   ],
-  methods: "GET,POST,DELETE,HEAD,PUT,PATCH",
+  methods: ["GET", "POST", "DELETE", "HEAD", "PUT", "PATCH"],
   credentials: true,
 };
 
 app.use(cors(corsOptions));
+
 
 app.use(express.json()); // Express middleware for app
 

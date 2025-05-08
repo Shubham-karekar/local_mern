@@ -59,6 +59,7 @@ export const Login = () => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(user),
+                credentials: "include", // Ensures cookies and credentials are sent
             });
 
             if (response.ok) {
