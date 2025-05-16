@@ -21,7 +21,7 @@ const ReviewCard = ({ img, name, username, body, isDarkMode }) => (
         <p className="review-username">{username}</p>
       </div>
     </div>
-    <p className="review-body">{body}</p>
+    <p className={`review-body ${isDarkMode ? "bg-dark text-light" : "bg-light text-dark"}`}>{body}</p>
   </div>
 );
 

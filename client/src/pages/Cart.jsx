@@ -11,6 +11,9 @@ const Cart = () => {
   const { cart, clearCart, total_price, shipping_fee } = useCartContext();
   const { theme } = useTheme();
 
+  const shippingFee = 5000;
+
+
   if (cart.length === 0) {
     return (
       <div className={`min-vh-100 d-flex justify-content-center align-items-center ${theme === "dark" ? "bg-dark text-white" : "bg-light text-dark"}`}>
@@ -66,11 +69,11 @@ const Cart = () => {
                   </tr>
                   <tr>
                     <td className="fw-bold">Shipping Fee</td>
-                    <td><FormatPrice price={shipping_fee} /></td>
-                  </tr>
+                    <td><FormatPrice price={shippingFee} /></td>
+                  </tr> 
                   <tr className="table-primary">
                     <td className="fw-bold">Total</td>
-                    <td className="fw-bold"><FormatPrice price={total_price + shipping_fee} /></td>
+                    <td className="fw-bold"><FormatPrice price={total_price + shippingFee} /></td>
                   </tr>
                 </tbody>
               </Table>
